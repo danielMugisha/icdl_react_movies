@@ -52,7 +52,7 @@ const MovieItem = ({ movie, day }) => {
 				<h5>{movie.year}</h5>
 				<div className="bg-light p-2 xindex-offcanvas">
 					{runningTimes
-						? day == 1
+						? day === 1
 							? runningTimes.mon.map((time) => (
 									<button
 										onClick={() => handleBooking(time)}
@@ -61,7 +61,7 @@ const MovieItem = ({ movie, day }) => {
 										{time}
 									</button>
 							  ))
-							: day == 2
+							: day === 2
 							? runningTimes.tue.map((time) => (
 									<button
 										onClick={() => handleBooking(time)}
@@ -70,7 +70,7 @@ const MovieItem = ({ movie, day }) => {
 										{time}
 									</button>
 							  ))
-							: day == 3
+							: day === 3
 							? runningTimes.wed.map((time) => (
 									<button
 										onClick={() => handleBooking(time)}
@@ -79,7 +79,7 @@ const MovieItem = ({ movie, day }) => {
 										{time}
 									</button>
 							  ))
-							: day == 4
+							: day === 4
 							? runningTimes.thu.map((time) => (
 									<button
 										onClick={() => handleBooking(time)}
@@ -88,7 +88,7 @@ const MovieItem = ({ movie, day }) => {
 										{time}
 									</button>
 							  ))
-							: day == 5
+							: day === 5
 							? runningTimes.fri.map((time) => (
 									<button
 										onClick={() => handleBooking(time)}
@@ -97,7 +97,7 @@ const MovieItem = ({ movie, day }) => {
 										{time}
 									</button>
 							  ))
-							: day == 6
+							: day === 6
 							? runningTimes.sat.map((time) => (
 									<button
 										onClick={() => handleBooking(time)}
@@ -106,7 +106,7 @@ const MovieItem = ({ movie, day }) => {
 										{time}
 									</button>
 							  ))
-							: day == 0
+							: day === 0
 							? runningTimes.sun.map((time) => (
 									<button
 										onClick={() => handleBooking(time)}

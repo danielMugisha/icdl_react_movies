@@ -27,7 +27,7 @@ const Booking = ({ data }) => {
 	);
 
 	const handleProceed = () => {
-		if (totalCash != 0) {
+		if (totalCash !== 0.0) {
 			navigate("/seat", { state: { movie, totalCash, totalSeats, day, time } });
 		} else {
 			setAlertContent("Enter at least on ticket to continue");
@@ -68,19 +68,19 @@ const Booking = ({ data }) => {
 			</div>
 			<div className="mt-2 border-top border-bottom">
 				<h4>
-					{day == "mon"
+					{day === "mon"
 						? "Monday"
-						: day == "tue"
+						: day === "tue"
 						? "Tuesday"
-						: day == "wed"
+						: day === "wed"
 						? "Wednesday"
-						: day == "thu"
+						: day === "thu"
 						? "Thursday"
-						: day == "fri"
+						: day === "fri"
 						? "Friday"
-						: day == "sat"
+						: day === "sat"
 						? "Saturday"
-						: day == "sun"
+						: day === "sun"
 						? "Sunday"
 						: ""}{" "}
 					{time}

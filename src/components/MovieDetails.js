@@ -3,11 +3,11 @@ import { useNavigate } from "react-router";
 
 const MovieDetails = ({ movie }) => {
 	const navigate = useNavigate();
+
 	const handleReservation = (day, time) => {
-		console.log(day, time);
-		const params = { movie, day, time };
 		navigate("/booking", { state: { movie, day, time } });
 	};
+
 	return (
 		<div className="p-5">
 			<div className="border-top border-bottom">

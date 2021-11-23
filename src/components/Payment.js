@@ -14,8 +14,8 @@ const Payment = ({ data }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		movie.bookings[day].map((b) => {
-			if (b.time == time) {
+		movie.bookings[day].forEach((b) => {
+			if (b.time === time) {
 				b.booked = [...b.booked, ...chosenSeats];
 			}
 		});
@@ -29,19 +29,19 @@ const Payment = ({ data }) => {
 			<div className="border-top border-bottom">
 				<h2>{movie.title}</h2>
 				<h4>
-					{day == "mon"
+					{day === "mon"
 						? "Monday"
-						: day == "tue"
+						: day === "tue"
 						? "Tuesday"
-						: day == "wed"
+						: day === "wed"
 						? "Wednesday"
-						: day == "thu"
+						: day === "thu"
 						? "Thursday"
-						: day == "fri"
+						: day === "fri"
 						? "Friday"
-						: day == "sat"
+						: day === "sat"
 						? "Saturday"
-						: day == "sun"
+						: day === "sun"
 						? "Sunday"
 						: ""}{" "}
 					{time}

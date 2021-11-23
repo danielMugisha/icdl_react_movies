@@ -7,9 +7,8 @@ const MovieDetailsPage = () => {
 	const { id } = useParams();
 	console.log(id);
 	const movies = useSelector((state) => state.movies);
-	const movie = movies.find((movie) => movie.id == id);
+	const movie = movies.find((movie) => movie.id === id);
 
-	// const movie = location.state;
 	return (
 		<>
 			<MovieDetails movie={movie} />

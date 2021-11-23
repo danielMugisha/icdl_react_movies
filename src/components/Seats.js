@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 
@@ -9,13 +9,16 @@ const Seats = ({ data }) => {
 	const { movie, totalSeats, totalCash, day, time } = data;
 	const [chosenSeats, setChosenSeats] = useState([]);
 	const storedMovie = useSelector((state) =>
-		state.movies.filter((m) => m.id == movie.id)
+		state.movies.filter((m) => {
+			return m.id === movie.id;
+		})
 	);
 	let alreadyBooked = [];
 	storedMovie[0]?.bookings[day].filter((b) => {
-		if (b.time == time) {
+		if (b.time === time) {
 			alreadyBooked = [...b.booked];
 		}
+		return alreadyBooked;
 	});
 
 	const seats = [];
@@ -31,7 +34,7 @@ const Seats = ({ data }) => {
 		if (chosenSeats.includes(seat)) {
 			setChosenSeats(
 				chosenSeats.filter((value) => {
-					return value != seat;
+					return value !== seat;
 				})
 			);
 		} else if (chosenSeats.length < totalSeats) {
@@ -62,19 +65,19 @@ const Seats = ({ data }) => {
 			<div className="border-top border-bottom">
 				<h2>{movie.title}</h2>
 				<h4>
-					{day == "mon"
+					{day === "mon"
 						? "Monday"
-						: day == "tue"
+						: day === "tue"
 						? "Tuesday"
-						: day == "wed"
+						: day === "wed"
 						? "Wednesday"
-						: day == "thu"
+						: day === "thu"
 						? "Thursday"
-						: day == "fri"
+						: day === "fri"
 						? "Friday"
-						: day == "sat"
+						: day === "sat"
 						? "Saturday"
-						: day == "sun"
+						: day === "sun"
 						? "Sunday"
 						: ""}{" "}
 					{time}

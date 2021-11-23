@@ -26,7 +26,7 @@ const HomePage = () => {
 					</div>
 					<div>
 						{WEEK_DAYS.map((day) =>
-							WEEK_DAYS.indexOf(day) == chosenDay ? (
+							WEEK_DAYS.indexOf(day) === chosenDay ? (
 								<button
 									className="btn btn-primary me-3 btn-sm day-button"
 									value={day}

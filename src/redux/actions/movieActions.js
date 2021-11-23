@@ -46,31 +46,31 @@ export const fetchMovies = () => {
 						};
 						const runningTimes = m.runningTimes;
 						for (const key in runningTimes) {
-							runningTimes[key].map((t) => {
-								if (key == "mon") {
+							runningTimes[key].forEach((t) => {
+								if (key === "mon") {
 									bookings.mon.push({ time: t, booked: [] });
 								}
-								if (key == "tue") {
+								if (key === "tue") {
 									bookings.tue.push({ time: t, booked: [] });
 								}
-								if (key == "wed") {
+								if (key === "wed") {
 									bookings.wed.push({ time: t, booked: [] });
 								}
-								if (key == "thu") {
+								if (key === "thu") {
 									bookings.thu.push({ time: t, booked: [] });
 								}
-								if (key == "fri") {
+								if (key === "fri") {
 									bookings.fri.push({ time: t, booked: [] });
 								}
-								if (key == "sat") {
+								if (key === "sat") {
 									bookings.sat.push({ time: t, booked: [] });
 								}
-								if (key == "sun") {
+								if (key === "sun") {
 									bookings.sun.push({ time: t, booked: [] });
 								}
 							});
 						}
-						m.bookings = bookings;
+						return (m.bookings = bookings);
 					});
 					localStorage.setItem("movies", JSON.stringify(movies));
 					dispatch(fetchMoviesSuccess(movies));
