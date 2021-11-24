@@ -3,7 +3,7 @@ import { useLocation } from "react-router";
 import Seats from "../../components/Seats";
 const SeatBooking = () => {
 	const location = useLocation();
-	const data = location.state;
+	const data = location.state; // get props from route
 	return (
 		<>
 			<Seats data={data} />

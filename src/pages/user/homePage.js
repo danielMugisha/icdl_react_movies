@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import MovieItem from "../../components/MovieItem";
 
@@ -12,7 +12,6 @@ const HomePage = () => {
 		setChosenDay(WEEK_DAYS.indexOf(day));
 	};
 
-	useEffect(() => {}, [chosenDay]);
 	return (
 		<>
 			{loading ? (

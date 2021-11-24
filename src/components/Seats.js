@@ -8,12 +8,14 @@ const Seats = ({ data }) => {
 	const [alertContent, setAlertContent] = useState("");
 	const { movie, totalSeats, totalCash, day, time } = data;
 	const [chosenSeats, setChosenSeats] = useState([]);
+	let alreadyBooked = [];
+
+	// get earlier bookings
 	const storedMovie = useSelector((state) =>
 		state.movies.filter((m) => {
 			return m.id === movie.id;
 		})
 	);
-	let alreadyBooked = [];
 	storedMovie[0]?.bookings[day].filter((b) => {
 		if (b.time === time) {
 			alreadyBooked = [...b.booked];
@@ -21,13 +23,14 @@ const Seats = ({ data }) => {
 		return alreadyBooked;
 	});
 
+	// create seats
 	const seats = [];
 	for (let j = 1; j < 11; j++) {
 		const row = [];
 		for (let i = 1; i < 11; i++) {
 			row.push(`${j}|${i}`);
 		}
-		seats.push(row);
+		seats.push(row); //push rows (this makes seats a 2-d array)
 	}
 
 	const saveSeat = (seat) => {

@@ -11,13 +11,15 @@ const Booking = ({ data }) => {
 	const [familyTickets, setFamilyTickets] = useState(0);
 	const [studentTickets, setStudentTickets] = useState(0);
 	const [seniorTickets, setSeniorTickets] = useState(0);
+
 	const [totalCash, setTotalCash] = useState(
 		adultTickets * 8.8 +
 			childTickets * 7.5 +
 			familyTickets * 30.0 +
 			studentTickets * 7.5 +
 			seniorTickets * 7.5
-	);
+	); // total cash = total seats each multiplied by its price/ticket
+
 	const [totalSeats, setTotalSeats] = useState(
 		adultTickets +
 			childTickets +
@@ -39,6 +41,7 @@ const Booking = ({ data }) => {
 		navigate(-1);
 	};
 
+	//on every change on any ticket type we update totals
 	useEffect(() => {
 		setTotalSeats(
 			adultTickets +

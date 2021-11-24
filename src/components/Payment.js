@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchMoviesSuccess } from "../redux/actions/movieActions";
 import { useNavigate } from "react-router";
+import MyDialog from "./Dialog";
 
 const Payment = ({ data }) => {
 	const dispatch = useDispatch();
@@ -13,6 +14,12 @@ const Payment = ({ data }) => {
 	const [confirmEmail, setConfirmEmail] = useState("");
 	const { movie, totalCash, chosenSeats, day, time } = data;
 	const { movies } = useSelector((state) => state);
+	const [showDialog, setShowDialog] = useState(false);
+
+	const handleCloseDialog = () => {
+		setShowDialog(false);
+		navigate("/");
+	};
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -31,7 +38,7 @@ const Payment = ({ data }) => {
 			setShowAlert(true);
 		} else {
 			dispatch(fetchMoviesSuccess(movies));
-			navigate("/");
+			setShowDialog(true);
 		}
 	};
 
@@ -46,6 +53,7 @@ const Payment = ({ data }) => {
 	};
 	return (
 		<div>
+			<MyDialog onClose={handleCloseDialog} open={showDialog} />
 			<div className="border-top border-bottom">
 				<h2>{movie.title}</h2>
 				<h4>
@@ -131,7 +139,11 @@ const Payment = ({ data }) => {
 						/>
 					</div>
 
-					<button onClick={handleSubmit} type="submit" class="btn btn-primary">
+					<button
+						onClick={handleSubmit}
+						type="submit"
+						className="btn btn-primary"
+					>
 						Book Reservation
 					</button>
 				</form>

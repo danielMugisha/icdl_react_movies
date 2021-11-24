@@ -4,11 +4,9 @@ import MovieDetails from "../../components/MovieDetails";
 import { useParams } from "react-router";
 
 const MovieDetailsPage = () => {
-	const { id } = useParams();
-	console.log(id);
-	const { movies } = useSelector((state) => state);
-	console.log("movies", movies);
-	const movie = movies.find((movie) => movie.id === parseInt(id));
+	const { id } = useParams(); //get id from route params
+	const { movies } = useSelector((state) => state); //get movies from redux store
+	const movie = movies.find((movie) => movie.id === parseInt(id)); // get movie by id
 
 	return (
 		<>

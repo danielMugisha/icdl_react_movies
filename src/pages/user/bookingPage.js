@@ -4,7 +4,7 @@ import Booking from "../../components/Booking";
 
 const BookingPage = () => {
 	const location = useLocation();
-	const data = location.state;
+	const data = location.state; //get props passed with the route
 	return (
 		<>
 			<Booking data={data} />
