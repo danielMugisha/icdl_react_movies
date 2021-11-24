@@ -25,6 +25,7 @@ export const fetchMoviesFailure = (error) => {
 };
 export const fetchMovies = () => {
 	return (dispatch) => {
+		// check local storage if we already have movies
 		const localMovies = JSON.parse(localStorage.getItem("movies"));
 		if (localMovies) {
 			dispatch(fetchMoviesSuccess(localMovies));
@@ -34,6 +35,8 @@ export const fetchMovies = () => {
 				.get("https://college-movies.herokuapp.com/")
 				.then((response) => {
 					const movies = response.data;
+					/* append a bookings object on every movie 
+					to store all the reservations on specific running times*/
 					movies.map((m) => {
 						const bookings = {
 							mon: [],
@@ -72,7 +75,10 @@ export const fetchMovies = () => {
 						}
 						return (m.bookings = bookings);
 					});
+					/* store the movies in local storage to prevent other api requests 
+					since the api return same things everytime */
 					localStorage.setItem("movies", JSON.stringify(movies));
+
 					dispatch(fetchMoviesSuccess(movies));
 				})
 				.catch((error) => {
