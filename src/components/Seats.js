@@ -46,7 +46,8 @@ const Seats = ({ data }) => {
 	};
 
 	const handleProceed = () => {
-		if (chosenSeats < totalSeats) {
+		console.log(chosenSeats, totalSeats);
+		if (chosenSeats.length < totalSeats) {
 			setAlertContent("Every one should have a seat");
 			setShowAlert(true);
 		} else {
@@ -139,9 +140,17 @@ const Seats = ({ data }) => {
 					);
 				})}
 			</div>
-			<div>
-				<button onClick={handleBack}>Back</button>
-				<button onClick={handleProceed}>Proceed</button>
+			<div className="d-flex justify-content-around mb-3 text-center">
+				<div>
+					<button className="navigationButton" onClick={handleBack}>
+						Back
+					</button>
+				</div>
+				<div>
+					<button className="navigationButton" onClick={handleProceed}>
+						Proceed
+					</button>
+				</div>
 			</div>
 		</div>
 	);

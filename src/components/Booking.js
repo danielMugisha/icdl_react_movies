@@ -231,11 +231,19 @@ const Booking = ({ data }) => {
 							</div>
 						</div>
 					</div>
+					<div className="d-flex justify-content-around mb-3 text-center">
+						<div>
+							<button className="navigationButton" onClick={handleBack}>
+								Back
+							</button>
+						</div>
+						<div>
+							<button className="navigationButton" onClick={handleProceed}>
+								Proceed
+							</button>
+						</div>
+					</div>
 				</div>
-			</div>
-			<div>
-				<button onClick={handleBack}>Back</button>
-				<button onClick={handleProceed}>Proceed</button>
 			</div>
 		</div>
 	);

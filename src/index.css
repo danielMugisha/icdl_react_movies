@@ -33,3 +33,13 @@ code {
 .seatButton {
 	width: 60px;
 }
+
+.navigationButton {
+	height: 50px;
+	width: 90px;
+	background-color: purple;
+	border: none;
+	outline: none;
+	border-radius: 5px;
+	font-weight: 700;
+}

@@ -6,6 +6,8 @@ import { useNavigate } from "react-router";
 const Payment = ({ data }) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const [showAlert, setShowAlert] = useState(false);
+	const [alertContent, setAlertContent] = useState("");
 	const [names, setNames] = useState("");
 	const [email, setEmail] = useState("");
 	const [confirmEmail, setConfirmEmail] = useState("");
@@ -21,8 +23,26 @@ const Payment = ({ data }) => {
 		});
 		const index = movies.findIndex((m) => m.id === movie.id);
 		movies[index] = movie;
-		dispatch(fetchMoviesSuccess(movies));
-		navigate("/");
+		if (!names || !email || !confirmEmail) {
+			setAlertContent("Fill in all the fields");
+			setShowAlert(true);
+		} else if (email !== confirmEmail) {
+			setAlertContent("emails should match");
+			setShowAlert(true);
+		} else {
+			dispatch(fetchMoviesSuccess(movies));
+			navigate("/");
+		}
+	};
+
+	const handleChangeNames = (e) => {
+		setNames(e.target.value);
+	};
+	const handleChangeEmail = (e) => {
+		setEmail(e.target.value);
+	};
+	const handleChangeConfirmEmail = (e) => {
+		setConfirmEmail(e.target.value);
 	};
 	return (
 		<div>
@@ -53,6 +73,23 @@ const Payment = ({ data }) => {
 				))}
 			</div>
 			<div className="container w-50 mt-5">
+				{showAlert ? (
+					<div
+						class="alert alert-warning alert-dismissible fade show"
+						role="alert"
+					>
+						{alertContent}
+						<button
+							type="button"
+							class="btn-close"
+							data-bs-dismiss="alert"
+							aria-label="Close"
+							onClick={() => setShowAlert(false)}
+						></button>
+					</div>
+				) : (
+					""
+				)}
 				<form>
 					<div className="mb-3">
 						<label for="name" className="form-label">
@@ -63,9 +100,8 @@ const Payment = ({ data }) => {
 							value={names}
 							className="form-control"
 							id="name"
-							onChange={(e) => {
-								setNames(e.target.value);
-							}}
+							name="names"
+							onChange={handleChangeNames}
 						/>
 					</div>
 					<div className="mb-3">
@@ -77,9 +113,8 @@ const Payment = ({ data }) => {
 							value={email}
 							className="form-control"
 							id="email"
-							onChange={(e) => {
-								setEmail(e.target.value);
-							}}
+							name="email"
+							onChange={handleChangeEmail}
 						/>
 					</div>
 					<div className="mb-3">
@@ -91,9 +126,8 @@ const Payment = ({ data }) => {
 							value={confirmEmail}
 							className="form-control"
 							id="email"
-							onChange={(e) => {
-								setConfirmEmail(e.target.value);
-							}}
+							name="c_email"
+							onChange={handleChangeConfirmEmail}
 						/>
 					</div>
 
