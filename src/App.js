@@ -13,7 +13,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const App = ({ fetchMovies }) => {
 	useEffect(() => {
 		fetchMovies();
-	}, []);
+	}, [fetchMovies]);
 	return (
 		<div className="container">
 			<Router>
