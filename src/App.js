@@ -6,6 +6,8 @@ import BookingPage from "./pages/user/bookingPage";
 import PaymentDetails from "./pages/user/paymentDetails";
 import MovieDetails from "./pages/user/movieDetails";
 import SeatBooking from "./pages/user/seatBooking";
+import Cinemas from "./pages/admin/cinemas";
+import Movies from "./pages/admin/movies";
 import { fetchMovies } from "./redux/actions/movieActions";
 import { connect } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -25,6 +27,8 @@ const App = ({ fetchMovies }) => {
 					<Route path="payment" element={<PaymentDetails />} />
 					<Route path="movie/:id" element={<MovieDetails />} />
 					<Route path="seat" element={<SeatBooking />} />
+					<Route path="cinemas" element={<Cinemas />} />
+					<Route path="movies" element={<Movies />} />
 				</Routes>
 			</Router>
 		</div>

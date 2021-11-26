@@ -43,3 +43,24 @@ code {
 	border-radius: 5px;
 	font-weight: 700;
 }
+
+.movie-list-item {
+	display: flex;
+	align-items: center;
+	min-height: 40px;
+	border-bottom: 1px solid lightblue;
+	padding: 5px 8px;
+	font-weight: 600;
+}
+
+.movie-list-item:hover {
+	text-decoration: underline;
+}
+
+.showMenuTrue {
+	display: block;
+}
+
+.showMenuFalse {
+	display: none;
+}

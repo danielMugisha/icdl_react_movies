@@ -23,9 +23,10 @@ const Payment = ({ data }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const bookObj = { seats: chosenSeats, client: { names, email } };
 		movie.bookings[day].forEach((b) => {
 			if (b.time === time) {
-				b.booked = [...b.booked, ...chosenSeats];
+				b.booked.push(bookObj);
 			}
 		});
 		const index = movies.findIndex((m) => m.id === movie.id);

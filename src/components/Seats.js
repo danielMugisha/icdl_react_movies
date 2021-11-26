@@ -18,7 +18,11 @@ const Seats = ({ data }) => {
 	);
 	storedMovie[0]?.bookings[day].filter((b) => {
 		if (b.time === time) {
-			alreadyBooked = [...b.booked];
+			b.booked?.map((b) => {
+				b.seats?.forEach((seat) => {
+					alreadyBooked.push(seat);
+				});
+			});
 		}
 		return alreadyBooked;
 	});
@@ -86,6 +90,7 @@ const Seats = ({ data }) => {
 						: ""}{" "}
 					{time}
 				</h4>
+				<h4>Cinema-{movie.cinema + 1}</h4>
 			</div>
 			<div className="container w-75 text-center border mt-4">
 				<h2>Screen</h2>

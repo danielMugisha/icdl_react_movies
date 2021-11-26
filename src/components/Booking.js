@@ -28,6 +28,12 @@ const Booking = ({ data }) => {
 			seniorTickets
 	);
 
+	useEffect(() => {
+		if (adultTickets == 0) {
+			setChildTickets(0);
+		}
+	}, [adultTickets]);
+
 	const handleProceed = () => {
 		if (totalCash !== 0.0) {
 			navigate("/seat", { state: { movie, totalCash, totalSeats, day, time } });
@@ -119,7 +125,15 @@ const Booking = ({ data }) => {
 								<h3>{adultTickets}</h3>
 							</div>
 							<div className="d-flex flex-column">
-								<button onClick={() => setAdultsTickets(adultTickets + 1)}>
+								<button
+									onClick={() => {
+										if (totalSeats < 6) {
+											setAdultsTickets(adultTickets + 1);
+										} else {
+											window.alert("only six seats can be booked at a time!");
+										}
+									}}
+								>
 									+
 								</button>
 								<button
@@ -144,7 +158,21 @@ const Booking = ({ data }) => {
 								<h3>{childTickets}</h3>
 							</div>
 							<div className="d-flex flex-column">
-								<button onClick={() => setChildTickets(childTickets + 1)}>
+								<button
+									onClick={() => {
+										if (adultTickets < 1) {
+											window.alert(
+												"a child should be accompanied by an adult!"
+											);
+										} else {
+											if (totalSeats < 6) {
+												setChildTickets(childTickets + 1);
+											} else {
+												window.alert("only six seats can be booked at a time!");
+											}
+										}
+									}}
+								>
 									+
 								</button>
 								<button
@@ -169,7 +197,17 @@ const Booking = ({ data }) => {
 								<h3>{familyTickets}</h3>
 							</div>
 							<div className="d-flex flex-column">
-								<button onClick={() => setFamilyTickets(familyTickets + 1)}>
+								<button
+									onClick={() => {
+										if (totalSeats <= 2) {
+											setFamilyTickets(familyTickets + 1);
+										} else {
+											window.alert(
+												"only six seats can be booked at a time! (a family ticket books 4 seats)"
+											);
+										}
+									}}
+								>
 									+
 								</button>
 								<button
@@ -194,7 +232,15 @@ const Booking = ({ data }) => {
 								<h3>{studentTickets}</h3>
 							</div>
 							<div className="d-flex flex-column">
-								<button onClick={() => setStudentTickets(studentTickets + 1)}>
+								<button
+									onClick={() => {
+										if (totalSeats < 6) {
+											setStudentTickets(studentTickets + 1);
+										} else {
+											window.alert("only six seats can be booked at a time!");
+										}
+									}}
+								>
 									+
 								</button>
 								<button
@@ -219,7 +265,15 @@ const Booking = ({ data }) => {
 								<h3>{seniorTickets}</h3>
 							</div>
 							<div className="d-flex flex-column">
-								<button onClick={() => setSeniorTickets(seniorTickets + 1)}>
+								<button
+									onClick={() => {
+										if (totalSeats < 6) {
+											setSeniorTickets(seniorTickets + 1);
+										} else {
+											window.alert("only six seats can be booked at a time!");
+										}
+									}}
+								>
 									+
 								</button>
 								<button

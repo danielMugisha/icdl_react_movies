@@ -37,6 +37,7 @@ export const fetchMovies = () => {
 					const movies = response.data;
 					/* append a bookings object on every movie 
 					to store all the reservations on specific running times*/
+					const cinemas = [0, 1, 2, 3, 4, 5];
 					movies.map((m) => {
 						const bookings = {
 							mon: [],
@@ -47,33 +48,60 @@ export const fetchMovies = () => {
 							sat: [],
 							sun: [],
 						};
+						const cinema =
+							movies.indexOf(m) < 6
+								? cinemas[movies.indexOf(m)]
+								: movies.indexOf(m) % 6;
 						const runningTimes = m.runningTimes;
 						for (const key in runningTimes) {
 							runningTimes[key].forEach((t) => {
 								if (key === "mon") {
-									bookings.mon.push({ time: t, booked: [] });
+									bookings.mon.push({
+										time: t,
+										booked: [],
+									});
 								}
 								if (key === "tue") {
-									bookings.tue.push({ time: t, booked: [] });
+									bookings.tue.push({
+										time: t,
+										booked: [],
+									});
 								}
 								if (key === "wed") {
-									bookings.wed.push({ time: t, booked: [] });
+									bookings.wed.push({
+										time: t,
+										booked: [],
+									});
 								}
 								if (key === "thu") {
-									bookings.thu.push({ time: t, booked: [] });
+									bookings.thu.push({
+										time: t,
+										booked: [],
+									});
 								}
 								if (key === "fri") {
-									bookings.fri.push({ time: t, booked: [] });
+									bookings.fri.push({
+										time: t,
+										booked: [],
+									});
 								}
 								if (key === "sat") {
-									bookings.sat.push({ time: t, booked: [] });
+									bookings.sat.push({
+										time: t,
+										booked: [],
+									});
 								}
 								if (key === "sun") {
-									bookings.sun.push({ time: t, booked: [] });
+									bookings.sun.push({
+										time: t,
+										booked: [],
+									});
 								}
 							});
 						}
-						return (m.bookings = bookings);
+						m.bookings = bookings;
+						m.cinema = cinema;
+						return;
 					});
 					/* store the movies in local storage to prevent other api requests 
 					since the api return same things everytime */
