@@ -16,12 +16,14 @@ const Seats = ({ data }) => {
 			return m.id === movie.id;
 		})
 	);
-	storedMovie[0]?.bookings[day].filter((b) => {
+	storedMovie[0]?.bookings[day].map((b) => {
 		if (b.time === time) {
 			b.booked?.map((b) => {
 				b.seats?.forEach((seat) => {
 					alreadyBooked.push(seat);
+					return alreadyBooked;
 				});
+				return alreadyBooked;
 			});
 		}
 		return alreadyBooked;

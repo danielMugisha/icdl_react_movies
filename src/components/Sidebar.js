@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 const Sidebar = ({
 	movies,
@@ -27,7 +27,7 @@ const Sidebar = ({
 								{Object.keys(movie.runningTimes).map((d) => {
 									return (
 										<>
-											{d == "mon" ? (
+											{d === "mon" ? (
 												<button
 													onClick={() => {
 														setSelectedMovie(movie);
@@ -37,7 +37,7 @@ const Sidebar = ({
 												>
 													Monday
 												</button>
-											) : d == "tue" ? (
+											) : d === "tue" ? (
 												<button
 													onClick={() => {
 														setSelectedMovie(movie);
@@ -47,7 +47,7 @@ const Sidebar = ({
 												>
 													Tuesday
 												</button>
-											) : d == "wed" ? (
+											) : d === "wed" ? (
 												<button
 													onClick={() => {
 														setSelectedMovie(movie);
@@ -57,7 +57,7 @@ const Sidebar = ({
 												>
 													Wednesday
 												</button>
-											) : d == "thu" ? (
+											) : d === "thu" ? (
 												<button
 													onClick={() => {
 														setSelectedMovie(movie);
@@ -67,7 +67,7 @@ const Sidebar = ({
 												>
 													Thursday
 												</button>
-											) : d == "fri" ? (
+											) : d === "fri" ? (
 												<button
 													onClick={() => {
 														setSelectedMovie(movie);
@@ -77,7 +77,7 @@ const Sidebar = ({
 												>
 													Friday
 												</button>
-											) : d == "sat" ? (
+											) : d === "sat" ? (
 												<button
 													onClick={() => {
 														setSelectedMovie(movie);
@@ -87,7 +87,7 @@ const Sidebar = ({
 												>
 													Saturday
 												</button>
-											) : d == "sun" ? (
+											) : d === "sun" ? (
 												<button
 													onClick={() => {
 														setSelectedMovie(movie);

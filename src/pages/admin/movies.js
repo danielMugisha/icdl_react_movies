@@ -28,7 +28,9 @@ const Movies = () => {
 			b.booked?.map((b) => {
 				b.seats?.forEach((seat) => {
 					alreadyBooked.push(seat);
+					return alreadyBooked;
 				});
+				return alreadyBooked;
 			});
 		}
 		return alreadyBooked;
@@ -72,7 +74,7 @@ const Movies = () => {
 					{selectedMovie.bookings[selectedDay].map((t) => {
 						return (
 							<div>
-								{t.time == selectedTime ? (
+								{t.time === selectedTime ? (
 									<div>
 										{t.booked.map((b) => {
 											return (

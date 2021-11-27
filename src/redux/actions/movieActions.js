@@ -101,7 +101,7 @@ export const fetchMovies = () => {
 						}
 						m.bookings = bookings;
 						m.cinema = cinema;
-						return;
+						return m;
 					});
 					/* store the movies in local storage to prevent other api requests 
 					since the api return same things everytime */

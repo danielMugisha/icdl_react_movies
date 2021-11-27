@@ -29,7 +29,7 @@ const Booking = ({ data }) => {
 	);
 
 	useEffect(() => {
-		if (adultTickets == 0) {
+		if (adultTickets === 0) {
 			setChildTickets(0);
 		}
 	}, [adultTickets]);
