@@ -39,16 +39,22 @@ const Cinemas = () => {
 		}
 	});
 
+	const goToMovies = (cinema) => {
+		if (cinemas[cinema].length > 0) {
+			navigate("/movies", {
+				state: { cinema, movies: cinemas[cinema] },
+			});
+		} else {
+			window.alert("no movies in the cinema");
+		}
+	};
+
 	return (
 		<div className="container-fluid w-75 mt-5">
 			{Object.keys(cinemas).map((cinema) => {
 				return (
 					<div
-						onClick={() =>
-							navigate("/movies", {
-								state: { cinema, movies: cinemas[cinema] },
-							})
-						}
+						onClick={() => goToMovies(cinema)}
 						className="mb-2 border d-flex justify-content-between"
 					>
 						<div className="m-2">

@@ -79,11 +79,13 @@ const Movies = () => {
 										{t.booked.map((b) => {
 											return (
 												<div className="d-flex justify-content-between p-2">
-													<div className="">{b.client.names}</div>
-													<div className="">{b.client.email}</div>
-													{b.seats.map((s) => {
-														return <div className="">{s}</div>;
-													})}
+													<div className="mx-2">{b.client.names}</div>
+													<div className="mx-2">{b.client.email}</div>
+													<div className="flex-grow-1 d-flex justify-content-end">
+														{b.seats.map((s) => {
+															return <span className="mx-2">{s}</span>;
+														})}
+													</div>
 												</div>
 											);
 										})}

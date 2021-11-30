@@ -2,7 +2,6 @@ import {
 	FETCH_MOVIES_REQUEST,
 	FETCH_MOVIES_FAILURE,
 	FETCH_MOVIES_SUCCESS,
-	SET_SELECTED_MOVIE,
 } from "../actionTypes";
 import axios from "axios";
 
@@ -25,101 +24,85 @@ export const fetchMoviesFailure = (error) => {
 };
 export const fetchMovies = () => {
 	return (dispatch) => {
-		// check local storage if we already have movies
-		const localMovies = JSON.parse(localStorage.getItem("movies"));
-		if (localMovies) {
-			dispatch(fetchMoviesSuccess(localMovies));
-		} else {
-			dispatch(fetchMoviesRequest);
-			axios
-				.get("https://college-movies.herokuapp.com/")
-				.then((response) => {
-					const movies = response.data;
-					/* append a bookings object on every movie 
+		dispatch(fetchMoviesRequest);
+		axios
+			.get("https://college-movies.herokuapp.com/")
+			.then((response) => {
+				const movies = response.data;
+				/* append a bookings object on every movie 
 					to store all the reservations on specific running times*/
-					const cinemas = [0, 1, 2, 3, 4, 5];
-					movies.map((m) => {
-						const bookings = {
-							mon: [],
-							tue: [],
-							wed: [],
-							thu: [],
-							fri: [],
-							sat: [],
-							sun: [],
-						};
-						const cinema =
-							movies.indexOf(m) < 6
-								? cinemas[movies.indexOf(m)]
-								: movies.indexOf(m) % 6;
-						const runningTimes = m.runningTimes;
-						for (const key in runningTimes) {
-							runningTimes[key].forEach((t) => {
-								if (key === "mon") {
-									bookings.mon.push({
-										time: t,
-										booked: [],
-									});
-								}
-								if (key === "tue") {
-									bookings.tue.push({
-										time: t,
-										booked: [],
-									});
-								}
-								if (key === "wed") {
-									bookings.wed.push({
-										time: t,
-										booked: [],
-									});
-								}
-								if (key === "thu") {
-									bookings.thu.push({
-										time: t,
-										booked: [],
-									});
-								}
-								if (key === "fri") {
-									bookings.fri.push({
-										time: t,
-										booked: [],
-									});
-								}
-								if (key === "sat") {
-									bookings.sat.push({
-										time: t,
-										booked: [],
-									});
-								}
-								if (key === "sun") {
-									bookings.sun.push({
-										time: t,
-										booked: [],
-									});
-								}
-							});
-						}
-						m.bookings = bookings;
-						m.cinema = cinema;
-						return m;
-					});
-					/* store the movies in local storage to prevent other api requests 
-					since the api return same things everytime */
-					localStorage.setItem("movies", JSON.stringify(movies));
-
-					dispatch(fetchMoviesSuccess(movies));
-				})
-				.catch((error) => {
-					const err = error.message;
-					dispatch(fetchMoviesFailure(err));
+				const cinemas = [0, 1, 2, 3, 4, 5];
+				movies.map((m) => {
+					const bookings = {
+						mon: [],
+						tue: [],
+						wed: [],
+						thu: [],
+						fri: [],
+						sat: [],
+						sun: [],
+					};
+					const cinema =
+						movies.indexOf(m) < 6
+							? cinemas[movies.indexOf(m)]
+							: movies.indexOf(m) % 6;
+					const runningTimes = m.runningTimes;
+					for (const key in runningTimes) {
+						runningTimes[key].forEach((t) => {
+							if (key === "mon") {
+								bookings.mon.push({
+									time: t,
+									booked: [],
+								});
+							}
+							if (key === "tue") {
+								bookings.tue.push({
+									time: t,
+									booked: [],
+								});
+							}
+							if (key === "wed") {
+								bookings.wed.push({
+									time: t,
+									booked: [],
+								});
+							}
+							if (key === "thu") {
+								bookings.thu.push({
+									time: t,
+									booked: [],
+								});
+							}
+							if (key === "fri") {
+								bookings.fri.push({
+									time: t,
+									booked: [],
+								});
+							}
+							if (key === "sat") {
+								bookings.sat.push({
+									time: t,
+									booked: [],
+								});
+							}
+							if (key === "sun") {
+								bookings.sun.push({
+									time: t,
+									booked: [],
+								});
+							}
+						});
+					}
+					m.bookings = bookings;
+					m.cinema = cinema;
+					return m;
 				});
-		}
-	};
-};
 
-export const setSelectedMovie = (movie) => {
-	return {
-		type: SET_SELECTED_MOVIE,
-		payload: movie,
+				dispatch(fetchMoviesSuccess(movies));
+			})
+			.catch((error) => {
+				const err = error.message;
+				dispatch(fetchMoviesFailure(err));
+			});
 	};
 };
